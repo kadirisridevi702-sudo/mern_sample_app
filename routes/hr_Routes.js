@@ -1,16 +1,20 @@
-let express = require('express');
-let router = express.Router();
-router.get('/employees', (req, res) => {
-    res.send('employees called');
+let express=require("express");
+let router=express.Router();
+
+router.get("/employees", (req, res) => {
+  res.send("Employees called");
 });
-router.post('/assign tasks', (req, res) => {
-    res.send('Task assigned to employee');
+
+router.post("/assign-task", (req, res) => {
+  res.send("Task assigned");
 });
-// create two more routes for tasks and notifications in get method
-router.get('/tasks', (req, res) => {        
-    res.send('tasks called');
+
+router.get("/tasks", (req, res) => {
+  res.send("Tasks called");
 });
-router.get('/notifications', (req, res) => {        
-    res.send('notifications called');
+
+router.get("/notification", (req, res) => {
+  res.send("Notifications called");
 });
+
 module.exports = router;
