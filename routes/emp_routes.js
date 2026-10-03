@@ -1,10 +1,9 @@
 let express=require("express");
 let router=express.Router();
-let bycrypt=require("bcrypt");
-let {users}=require("../models/users");
+let  {users}=require("../models/users");
 
 router.post("/register", async (req, res) => {
- // res.send("Register page called");
+ res.send("Register page called")  ;
   let data=req.body;
   let newUser=new users(data);
   let result=awaitnewUser.save();
@@ -34,8 +33,13 @@ router.get("/viewtodo", (req, res) => {
     res.send("View ToDo page called");  
 });
 
-router.put("/updateprofile", (req, res) => {
-    res.send("Update Profile page called");
+router.patch("/updateprofile/:id",async (req, res) => {
+  let data=req.body;
+  if(data.password){
+    data.password=await bycrypt.hash(data.password,10);
+  }
+let updatedata=await user.findByIdAndUpdate(req.params.id,{$set:data});
+res.send(updatedata);
 });
 
 module.exports = router;
